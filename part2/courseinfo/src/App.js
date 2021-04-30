@@ -1,6 +1,7 @@
 import React from 'react'
 
 //Import child components
+//Done Adding Course as seperate component
 import Course from "./components/Course.js"
 
 

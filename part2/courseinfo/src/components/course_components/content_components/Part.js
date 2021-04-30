@@ -2,9 +2,9 @@ import React from 'react';
 
 const Part = ({ partName, partExercise }) => {
     return (
-        <li>
+        <p>
             {partName} - {partExercise} points
-        </li>
+        </p>
     )
 }
 

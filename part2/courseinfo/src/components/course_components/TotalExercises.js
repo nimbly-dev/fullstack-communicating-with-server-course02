@@ -6,7 +6,7 @@ const TotalExercises = ({ parts }) => {
     console.log(parts)
     return (
         <div>
-            <p>Total Exercises: {totalExercisesCount}</p>
+            <p><b>Total Exercises: {totalExercisesCount}</b></p>
         </div>
     )
 }

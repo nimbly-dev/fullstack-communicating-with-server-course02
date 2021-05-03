@@ -13,5 +13,5 @@ repository for course02 on Fullstack Web Development Course
 
  * 2.6 phonebook step1 - DONE
  * 2.7 phonebook step2 - DONE
-
+ * 2.8 phonebook step3 - DONE
 ```

@@ -6,16 +6,16 @@ import Person from "./components/Person"
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', id: 1 }
+    { name: 'Arto Hellas', number: '040-1234567', id: 1 }
   ])
   const [newName, setNewName] = useState('Enter new name')
+  const [newNumber, setNewNumber] = useState('Enter new number')
 
 
   //Handle addingName
-  const addName = (event) => {
+  const addContact = (event) => {
 
-
-    if (newName === '' || newName === 'Enter new name') {
+    if (newName === '' || newName === 'Enter new name' || newNumber === '') {
       event.preventDefault()
       alert("Input must not be empty or default value")
     }
@@ -27,6 +27,7 @@ const App = () => {
       event.preventDefault()
       const newPersonObj = {
         name: newName,
+        number: newNumber,
         id: persons.length + 1
       }
       setPersons(persons.concat(newPersonObj))
@@ -39,13 +40,22 @@ const App = () => {
     setNewName(event.target.value)
   }
 
+  const inputNumberChange = (event) => {
+    setNewNumber(event.target.value)
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
-      <Form value={newName} handleBtnSubmit={addName} handleInputNameChange={inputNameChange} />
+      <Form
+        placeholderNameValue={newName}
+        handleBtnSubmit={addContact}
+        handleInputNameChange={inputNameChange}
+        handleInputNumberChange={inputNumberChange}
+      />
       <h2>Numbers</h2>
       {persons.map(person => (
-        <Person key={person.id} name={person.name} />
+        <Person key={person.id} name={person.name} number={person.number} />
       ))}
     </div>
   )

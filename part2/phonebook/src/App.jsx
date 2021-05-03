@@ -16,10 +16,12 @@ const App = () => {
 
 
     if (newName === '' || newName === 'Enter new name') {
+      event.preventDefault()
       alert("Input must not be empty or default value")
     }
     else if (persons.some(person => person.name === newName)) {
-      alert(newName + " is already existing")
+      event.preventDefault()
+      alert(`${newName} is already added to phonebook`)
     }
     else {
       event.preventDefault()

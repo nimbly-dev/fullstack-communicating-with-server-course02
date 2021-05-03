@@ -11,5 +11,7 @@ repository for course02 on Fullstack Web Development Course
  * 2.4 course-info step9 - DONE
  * 2.5 course-info seperate-module - DONE
 
+ * 2.6 phonebook step1 - DONE
+ * 2.7 phonebook step2 - DONE
 
 ```

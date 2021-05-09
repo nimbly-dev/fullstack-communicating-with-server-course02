@@ -71,6 +71,7 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
+  //Done Adding Seperating the components
   return (
     <div>
       <h2>Phonebook</h2>

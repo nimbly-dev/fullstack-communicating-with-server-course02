@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+
+import axios from 'axios'
 
 //Import child components
 import Form from "./components/Form"
@@ -7,15 +9,24 @@ import Searchfield from "./components/Searchfield"
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', id: 0, number: '040-123456' },
-    { name: 'Ada Lovelace', id: 1, number: '39-44-5323523' },
-    { name: 'Dan Abramov', id: 2, number: '12-43-234345' },
-    { name: 'Mary Poppendieck', id: 3, number: '39-23-6423122' }
+    []
   ])
   const [searchString, setNewSearchString] = useState('Enter search string')
   const [isFilter, setIsFilter] = useState(false)
   const [newName, setNewName] = useState('Enter new name')
   const [newNumber, setNewNumber] = useState(0)
+
+  const hook = () => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(response.data)
+      })
+  }
+
+  useEffect(hook, [])
 
   //Handle searchFilter
   const filterPersons = (event) => {

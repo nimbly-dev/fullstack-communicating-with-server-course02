@@ -21,6 +21,7 @@ const App = () => {
 
   //Methods
   const searchInputChange = (event) => {
+    //If input is default value or empty
     if (event.target.value === "Enter a country" || event.target.value === "") {
       setIsFiltered(false);
       setFilterValue("");
@@ -30,6 +31,10 @@ const App = () => {
     }
   };
 
+  const onClickShow = (event) => {
+    setFilterValue(event.target.value);
+  };
+
   return (
     <main>
       <h3>REST All Country API</h3>
@@ -37,10 +42,12 @@ const App = () => {
         handleChangeSearchValue={searchInputChange}
         currentFilterValue={filterValue}
       />
+      <br />
       <DisplayCountry
         countries={countries}
         isFiltered={isFiltered}
         filterValue={filterValue}
+        onClickShow={onClickShow}
       />
     </main>
   );

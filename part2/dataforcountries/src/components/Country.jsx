@@ -7,6 +7,7 @@ const Country = ({
   languages,
   flag,
   exactMatch,
+  onClickShow,
 }) => {
   if (exactMatch === true) {
     return (
@@ -24,7 +25,17 @@ const Country = ({
       </div>
     );
   } else {
-    return <p>{name}</p>;
+    return (
+      //If specific button is clicked its value will be set as the filterValue
+      <div>
+        {name} &nbsp;&nbsp;
+        <button onClick={onClickShow} value={name}>
+          Show
+        </button>
+        <br />
+        <br />
+      </div>
+    );
   }
 };
 

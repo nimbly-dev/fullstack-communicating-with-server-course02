@@ -3,7 +3,7 @@ import React from "react";
 //Import child components
 import Country from "./Country.jsx";
 
-const Searchresults = ({ countries, filterValue, isFiltered }) => {
+const Searchresults = ({ countries, filterValue, isFiltered, onClickShow }) => {
   if (isFiltered === true) {
     //Filter results based on filter value
     const filtered = countries.filter((country) => {
@@ -39,7 +39,12 @@ const Searchresults = ({ countries, filterValue, isFiltered }) => {
           <div>
             <div>
               {filtered.map((country) => (
-                <Country name={country.name} exactMatch={false} />
+                <Country
+                  name={country.name}
+                  exactMatch={false}
+                  filterValue={filterValue}
+                  onClickShow={onClickShow}
+                />
               ))}
             </div>
           </div>

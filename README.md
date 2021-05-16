@@ -20,4 +20,5 @@ repository for course02 on Fullstack Web Development Course
  * 2.11 phonebook step6 - DONE
 
  * 2.12* dataforcountries step1 - DONE
+ * 2.13* dataforcountries step2 - DONE
 ```

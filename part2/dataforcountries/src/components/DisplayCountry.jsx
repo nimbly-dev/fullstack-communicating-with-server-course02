@@ -50,6 +50,12 @@ const Searchresults = ({ countries, filterValue, isFiltered, onClickShow }) => {
           </div>
         );
       }
+    } else {
+      return (
+        <div>
+          <p>Not found</p>
+        </div>
+      );
     }
   }
   //Input is empty

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 
+//Import third party library
 import axios from "axios";
+
+//Import helper modules
+import phonebookService from "./services/phonebook";
 
 //Import child components
 import Form from "./components/Form";
 import DisplayPhonebook from "./components/DisplayPhonebook";
 import Searchfield from "./components/Searchfield";
+import phonebook from "./services/phonebook";
 
 const App = () => {
   const [persons, setPersons] = useState([[]]);
@@ -16,9 +21,8 @@ const App = () => {
 
   const hook = () => {
     console.log("effect");
-    axios.get("http://localhost:3001/persons").then((response) => {
-      console.log("promise fulfilled");
-      setPersons(response.data);
+    phonebookService.getAll().then((initialPersons) => {
+      setPersons(initialPersons);
     });
   };
 
@@ -61,9 +65,11 @@ const App = () => {
         number: newNumber,
         id: persons.length + 1,
       };
-      setPersons(persons.concat(newPersonObj));
-      setNewName("");
-      setNewNumber(0);
+      phonebook.create(newPersonObj).then((returnedPerson) => {
+        setPersons(persons.concat(returnedPerson));
+        setNewName("");
+        setNewNumber(0);
+      });
     }
   };
 

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-//Import third party library
-
 //Import helper modules
 import phonebookService from "./services/phonebook";
 
@@ -55,7 +53,37 @@ const App = () => {
       alert("Input must not be empty or default value");
     } else if (persons.some((person) => person.name === newName)) {
       event.preventDefault();
-      alert(`${newName} is already added to phonebook`);
+      const askConfirmation = window.confirm(
+        `${newName} is already added to phonebook, replace the old number with a new one?`
+      );
+      if (askConfirmation === true) {
+        const updatedPerson = {
+          ...persons,
+          number: newNumber,
+          name: newName,
+        };
+        const personId = persons.find(
+          (person) => person.name === newName
+          //Find the person object of the contact with the same name
+        );
+
+        console.log(personId.id);
+        phonebookService
+          .update(updatedPerson, personId.id)
+          .then((returnedPerson) => {
+            setPersons(
+              persons.map((person) =>
+                person.id !== personId.id ? person : returnedPerson
+              )
+            );
+          })
+          .catch((error) => {
+            alert(
+              `the name '${updatedPerson.name}' was already deleted from server`
+            );
+            setPersons(persons.filter((p) => p.id !== personId));
+          });
+      }
     } else {
       event.preventDefault();
       const newPersonObj = {

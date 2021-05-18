@@ -1,6 +1,7 @@
 import axios from "axios";
 const baseUrl = "http://localhost:3001/persons";
 
+//Seperated communication with back-end module
 const getAll = () => {
   const request = axios.get(baseUrl);
   return request.then((response) => {

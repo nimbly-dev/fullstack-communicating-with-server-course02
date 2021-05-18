@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 //Import third party library
-import axios from "axios";
 
 //Import helper modules
 import phonebookService from "./services/phonebook";
@@ -20,7 +19,6 @@ const App = () => {
   const [newNumber, setNewNumber] = useState(0);
 
   const hook = () => {
-    console.log("effect");
     phonebookService.getAll().then((initialPersons) => {
       setPersons(initialPersons);
     });

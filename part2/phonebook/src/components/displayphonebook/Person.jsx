@@ -1,11 +1,26 @@
-import React from 'react';
+import React from "react";
+
+//Import helper modules
+import phonebookService from "../../services/phonebook";
 
 const Person = ({ id, name, number }) => {
-    return (
-        <p key={id}>
-            {name} | {number}
-        </p>
-    )
-}
+  // Handle deleting name
+  const deleteContact = (id) => {
+    const askConfirmation = window.confirm("Do you really want to delete" + id);
+    if (askConfirmation === true) {
+      phonebookService.remove(id);
+      window.location.reload(); //Needs alternative
+    }
+  };
 
-export default Person
+  return (
+    <div>
+      <p key={id}>
+        {name} | {number}
+        <button onClick={() => deleteContact(id)}>Delete {id}</button>
+      </p>
+    </div>
+  );
+};
+
+export default Person;

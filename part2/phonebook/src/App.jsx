@@ -8,7 +8,7 @@ import Form from "./components/Form";
 import DisplayPhonebook from "./components/DisplayPhonebook";
 import Searchfield from "./components/Searchfield";
 import phonebook from "./services/phonebook";
-import SuccesfulAdd from "./components/notification/SuccesfulAdd";
+import Notification from "./components/notification/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([[]]);
@@ -17,6 +17,7 @@ const App = () => {
   const [newName, setNewName] = useState("Enter new name");
   const [newNumber, setNewNumber] = useState(0);
   const [notificationMssg, setNewNotificationMssg] = useState("");
+  const [notificationType, setNotificationType] = useState("");
 
   const hook = () => {
     phonebookService.getAll().then((initialPersons) => {
@@ -81,9 +82,10 @@ const App = () => {
             );
           })
           .catch((error) => {
-            alert(
+            setNewNotificationMssg(
               `the name '${personWithSameName.name}' was already deleted from server`
             );
+            setNotificationType("fail-to-delete");
             setPersons(persons.filter((p) => p.id !== personWithSameName));
           });
       }
@@ -94,7 +96,7 @@ const App = () => {
         setNewNumber(0);
       });
       setNewNotificationMssg("Added new Contact");
-      console.log(notificationMssg);
+      setNotificationType("success");
     }
   };
 
@@ -122,7 +124,7 @@ const App = () => {
         handleInputNameChange={inputNameChange}
         handleInputNumberChange={inputNumberChange}
       />
-      <SuccesfulAdd message={notificationMssg} />
+      <Notification message={notificationMssg} type={notificationType} />
       <h2>Numbers</h2>
       <DisplayPhonebook
         persons={persons}

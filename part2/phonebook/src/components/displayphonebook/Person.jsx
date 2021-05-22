@@ -12,7 +12,6 @@ const Person = ({ id, name, number }) => {
       window.location.reload(); //Needs alternative
     }
   };
-
   return (
     <div>
       <p key={id}>
